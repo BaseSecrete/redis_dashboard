@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redis Dashboard</title>
+    <link rel="stylesheet" href="application.css">
+  </head>
+
+  <body>
+    <div class="page">
+      <h1 class="page-header">
+        <span class="page-title">Redis Dashboard</span>
+        <span class="page-menu">
+          <a class="page-menu-item" href="<%= url("/") %>">Overview</a>
+          <% if params[:id] %>
+            <a class="page-menu-item" href="<%= url("/info?id=#{redis_id}") %>">Info</a>
+            <a class="page-menu-item" href="<%= url("/config?id=#{redis_id}") %>">Config</a>
+            <a class="page-menu-item" href="<%= url("/clients?id=#{redis_id}") %>">Clients</a>
+            <a class="page-menu-item" href="<%= url("/slowlog?id=#{redis_id}") %>">Slowlog</a>
+          <% end %>
+        </span>
+      </h1>
+      <%= yield %>
+    </div>
+  </body>
+</html>
