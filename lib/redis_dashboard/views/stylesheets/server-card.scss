@@ -1,6 +1,37 @@
+.server-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -24px 0 0 -24px;
+}
 .server-card {
-  background: $color-tertiary;
+  background: $color-white;
+  padding: 0;
+  flex: 1 1 480px;
+  margin: 24px 0 0 24px;
+  box-shadow: 0 4px 12px 0px $color-light;
 }
 .server-card-title {
-  text-align: center;
+  font-size: 1.2rem;
+  margin-right: auto;
+  padding: 24px;
+}
+.server-card-title a {
+  text-decoration: underline;
+}
+.server-card-content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.server-card-content > div {
+  margin:0;
+  padding: 0 24px 24px;
+  flex: 1;
+}
+.server-card-content .label {
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: .574rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+  display: block;
 }

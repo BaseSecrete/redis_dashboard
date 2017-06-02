@@ -1,17 +1,19 @@
-<table>
-  <tr>
-    <th>ID</th>
-    <th>At</th>
-    <th>Duration</th>
-    <th>Command</th>
-  </tr>
+<div class="table">
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>At</th>
+      <th>Duration</th>
+      <th>Command</th>
+    </thead>
 
-  <% for cmd in commands %>
-    <tr>
-      <td><%= cmd.id %></td>
-      <td><%= epoch_to_short_date_time cmd.timestamp %></td>
-      <td><%= cmd.microseconds %></td>
-      <td><%= cmd.command.join(" ") %></td>
-    </tr>
-  <% end %>
-</table>
+    <% for cmd in commands %>
+      <tr>
+        <td><%= cmd.id %></td>
+        <td><%= epoch_to_short_date_time cmd.timestamp %></td>
+        <td><%= cmd.microseconds %></td>
+        <td><%= cmd.command.join(" ") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

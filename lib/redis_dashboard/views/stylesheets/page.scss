@@ -1,12 +1,71 @@
 .page {
-  margin: 1%;
+  margin: 0px auto;
+  overflow-x: hidden;
+  max-width: 1480px;
+  padding: 0 24px;
+}
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.page-header {
-  border-bottom: 1px solid $color-quinary;
+.page-header a {
+  font-family: sans-serif;
+  font-size: .694rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0 12px;
+  background: $color-redis;
+  color: $color-white;
+
+  border-bottom: 1px solid $color-light;
+}
+.page-header a:hover {
+  background: $color-redis-dark;
+}
+.page-header a.active {
+  color: $color-redis;
+  background: $color-white;
+  font-weight: 700;
+}
+
+.page-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 auto 24px 0;
+  line-height: 48px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  box-shadow: 0 4px 12px 0px $color-light;
+}
+
+.page-title span {
+  display: inline-block;
+  background-color: $color-white;
+  padding: 0 12px;
+  border-bottom: 1px solid $color-light;
 }
 
 .page-menu {
-  font-size: 50%;
-  line-height: 300%;
+  display: flex;
+  flex-wrap: nowrap;
+  line-height: 48px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px 0px $color-light;
+}
+
+div.table {
+	width: 100%;
+	background: $color-white;
+	overflow-x: scroll;
+	margin-bottom: 24px;
+  box-shadow: 0 4px 12px 0px $color-light;
+}
+
+.page-footer {
+  margin-top: 24px;
+  font-size: .833rem;
 }

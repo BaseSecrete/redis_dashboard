@@ -1,7 +1,14 @@
 @import "stylesheets/colors";
 
 @import "stylesheets/normalize";
-@import "stylesheets/milligram/milligram";
+
+
+
+@import "stylesheets/base";
+@import "stylesheets/typography";
+@import "stylesheets/link";
+
+@import "stylesheets/table";
 
 @import "stylesheets/page";
 @import "stylesheets/server-card";

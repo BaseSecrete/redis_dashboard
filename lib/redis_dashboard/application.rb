@@ -37,12 +37,20 @@ class RedisDashboard::Application < Sinatra::Base
   end
 
   helpers do
+    def page_title
+      "#{client.url} (#{client.info["role"]})"
+    end
+
     def epoch_to_short_date_time(epoch)
       Time.at(epoch).strftime("%b %d %H:%M")
     end
 
     def redis_id
       params[:id].to_i
+    end
+
+    def active_page?(path='')
+      request.path_info == '/' + path
     end
   end
 end

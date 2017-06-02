@@ -1,30 +1,24 @@
 <div class="server-list">
-  <div class="row">
-    <% clients.each_with_index do |client, index| %>
-      <% info = client.info %>
-      <div class="column column server-card">
-        <div class="server-card-title">
-          <a href="<%= url("info?id=#{index}") %>">
-            <%= client.url %>  (<%= info["role"] %>)
-          </a>
+  <% clients.each_with_index do |client, index| %>
+    <% info = client.info %>
+    <div class="server-card">
+      <div class="server-card-title">
+        <a href="<%= url("info?id=#{index}") %>"><%= client.url %>  (<%= info["role"] %>)</a>
+      </div>
+      <div class="server-card-content">
+        <div>
+          <span class="label">Connections</span>
+          <span><%= info["connected_clients"] %></span>
         </div>
-        <div class="row">
-          <div class="column">
-            <strong>Connections</strong>
-            <p><%= info["connected_clients"] %></p>
-          </div>
-
-          <div class="column">
-            <strong>Memory</strong>
-            <p><%= info["used_memory_human"] %></p>
-          </div>
-
-          <div class="column">
-            <strong>Commands per second</strong>
-            <p><%= info["instantaneous_ops_per_sec"] %></p>
-          </div>
+        <div>
+          <span class="label">Memory</span>
+          <span><%= info["used_memory_human"] %></span>
+        </div>
+        <div>
+          <span class="label">Commands per second</span>
+          <span><%= info["instantaneous_ops_per_sec"] %></span>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

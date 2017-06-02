@@ -1,8 +1,10 @@
-<table>
-  <% for (key, value) in config %>
-    <tr>
-      <td><%= key %></td>
-      <td><%= value %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="table">
+  <table>
+    <% for (key, value) in config %>
+      <tr>
+        <td class="key"><%= key %></td>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
