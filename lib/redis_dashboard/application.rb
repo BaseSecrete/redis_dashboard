@@ -1,5 +1,6 @@
 require "sinatra/base"
 require "redis"
+require "uri"
 
 class RedisDashboard::Application < Sinatra::Base
   after { client.close }
@@ -38,7 +39,7 @@ class RedisDashboard::Application < Sinatra::Base
 
   helpers do
     def page_title
-      "#{client.url} (#{client.info["role"]})"
+      "#{URI(client.url).host} (#{client.info["role"]})"
     end
 
     def epoch_to_short_date_time(epoch)

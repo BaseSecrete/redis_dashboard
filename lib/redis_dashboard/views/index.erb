@@ -3,7 +3,7 @@
     <% info = client.info %>
     <div class="server-card">
       <div class="server-card-title">
-        <a href="<%= url("info?id=#{index}") %>"><%= client.url %>  (<%= info["role"] %>)</a>
+        <a href="<%= url("info?id=#{index}") %>"><%= URI(client.url).host %>  (<%= info["role"] %>)</a>
       </div>
       <div class="server-card-content">
         <div>
