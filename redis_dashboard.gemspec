@@ -6,9 +6,9 @@ Gem::Specification.new do |spec|
   spec.version       = "0.1.0"
   spec.authors       = ["Alexis Bernard"]
   spec.email         = ["alexis@bernard.io"]
-  spec.summary       = "Sinatra app to monitor Redis servers"
-  spec.description   = ""
-  #spec.homepage      = "TODO"
+  spec.summary       = "Sinatra app to monitor Redis servers."
+  spec.description   = "Sinatra app to monitor Redis servers"
+  spec.homepage      = "https://github.com/BaseSecrete/redis_dashboard"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
