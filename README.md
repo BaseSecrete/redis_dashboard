@@ -3,7 +3,7 @@
 It's a Sinatra web app showing monitoring informations about your Redis server.
 You can run it in standalone or inside your Rails app.
 
-[[https://github.com/BaseSecrete/redis_dashboard/screenshot.jpg|alt=redis_dashboard]]
+![Redis dashboard](https://github.com/BaseSecrete/redis_dashboard/screenshot.jpg)
 
 ## Installation inside a Rails app
 
@@ -34,7 +34,7 @@ RedisDashboard::Application.use(Rack::Auth::Basic) do |user, password|
 end
 ```
 
-# MIT License
+## MIT License
 
-Made by [Base Secrete][basesecrete.com].
-Rails developer? Check out [RoRvsWild][rorvswild.com], our Ruby on Rails application monitoring tool.
+Made by [Base Secrete](basesecrete.com).
+Rails developer? Check out [RoRvsWild](rorvswild.com), our Ruby on Rails application monitoring tool.
