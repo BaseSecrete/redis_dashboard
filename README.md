@@ -19,7 +19,7 @@ bundle install
 
 Then mount the app from `config/routes.rb`:
 ```ruby
-match "/redis_dashboard" => RedisDashboard::Application
+mount RedisDashboard::Application, at: "redis_dashboard"
 ```
 
 Specify the Redis URLs in `config/redis_dashboard.rb`:
