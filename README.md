@@ -36,6 +36,6 @@ end
 
 ## MIT License
 
-Made by [Base Secrete](basesecrete.com).
+Made by [Base Secrete](https://basesecrete.com).
 
-Rails developer? Check out [RoRvsWild](rorvswild.com), our Ruby on Rails application monitoring tool.
+Rails developer? Check out [RoRvsWild](https://rorvswild.com), our Ruby on Rails application monitoring tool.
