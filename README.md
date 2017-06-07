@@ -22,7 +22,12 @@ Then mount the app from `config/routes.rb`:
 match "/redis_dashboard" => RedisDashboard::Application
 ```
 
+Specify the Redis URLs in `config/redis_dashboard.rb`:
+```ruby
 RedisDashboard.urls = ["redis://localhost"]
+```
+
+Finally visit http://localhost/redis_dashboard/.
 
 ## Authentication
 
@@ -36,6 +41,6 @@ end
 
 ## MIT License
 
-Made by [Base Secrete](https://basesecrete.com).
+Made by [Base Secrète](https://basesecrete.com).
 
 Rails developer? Check out [RoRvsWild](https://rorvswild.com), our Ruby on Rails application monitoring tool.
