@@ -17,6 +17,14 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:config, locals: {config: client.config})
   end
 
+  get "/key/:key" do
+    erb(:key, locals: client.key(params["key"]))
+  end
+
+  get "/keys" do
+    erb(:keys, locals: client.keys(params))
+  end
+
   get "/clients" do
     erb(:clients, locals: {clients: client.clients})
   end

@@ -1,0 +1,19 @@
+<div class="table">
+  <table>
+    <thead>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Type</th>
+      <th></th>
+    </thead>
+
+    <% for key in keys %>
+      <tr>
+        <td><%= key[:key] %></td>
+        <td><%= key[:value] %></td>
+        <td><%= key[:type] %></td>
+        <td><a href="/key/<%= key[:key] %>">View</a></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
