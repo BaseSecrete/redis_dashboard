@@ -59,7 +59,7 @@ class RedisDashboard::Client
   end
 
   def keys(params = {})
-    cursor = params.fetch(:cursor, 0)
+    cursor = params.fetch("cursor", 0)
     next_cursor, keys = connection.scan(cursor)
     keys = keys.map do |key| 
       key_type = connection.type(key)
