@@ -1,7 +1,3 @@
-
-// Link
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-
 a {
 	color: $color-redis;
 	text-decoration: none;
@@ -19,6 +15,6 @@ a svg {
 	relative;
 	top: 3px;
 }
-a svg {
+a:hover svg {
 	fill: $color-redis-dark;
 }
