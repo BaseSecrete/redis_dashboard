@@ -12,7 +12,7 @@
         <td><%= key[:key] %></td>
         <td><%= key[:value] %></td>
         <td><%= key[:type] %></td>
-        <td><a href="/key/<%= key[:key] %>">View</a></td>
+        <td><a href="/key/<%= key[:key] %>?id=#{redis_id}">View</a></td>
       </tr>
     <% end %>
   </table>

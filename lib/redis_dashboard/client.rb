@@ -45,17 +45,17 @@ class RedisDashboard::Client
 
   def key(key) 
     key_type = connection.type(key)
-    value = case key_type
-            when "string"
-              connection.get(key)
-            when "hash"
-              connection.hlen(key)
-            when "set"
-              connection.smembers(key)
-            when "zset"
-              "#{connection.zcount(key, "-inf", "+inf")}"
-            end
-    {key: key, value: value, type: key_type}
+    values = case key_type
+             when "string"
+               [connection.get(key)]
+             when "hash"
+               connection.hgetall(key)
+             when "set"
+               connection.smembers(key)
+             when "zset"
+               "#{connection.zcount(key, "-inf", "+inf")}"
+             end
+    {key: key, values: values, type: key_type}
   end
 
   def keys(params = {})

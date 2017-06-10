@@ -1,4 +1,23 @@
 <div class="table">
-<%= key %>
-<%= value %>
+  <table>
+    <tr>
+      <th>Key</th>
+      <td><%= key %></td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td><%= type %></td>
+    </tr>
+    <tr>
+      <th>Values</th>
+      <td>
+      <div style="max-height:500px; overflow-y:scroll;">
+        <% for value in values %>
+          <%= value %><br />
+        <% end %>
+      </div>
+      </td>
+    </tr>
+  </table>
 </div>
+  
