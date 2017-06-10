@@ -12,8 +12,37 @@
       <th>Values</th>
       <td>
       <div style="max-height:500px; overflow-y:scroll;">
-        <% for value in values %>
-          <%= value %><br />
+        <% if type == "hash" %>
+          <table>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+            <% for value in values %>
+              <tr>
+                <td><%= value[0] %></td>
+                <td><%= value[1] %></td>
+              </tr>
+            <% end %>
+          </table>
+        
+        <% elsif type == "zset" %>
+          <table>
+            <tr>
+              <th>Key</th>
+              <th>Score</th>
+            </tr>
+            <% for value in values %>
+              <tr>
+                <td><%= value[0] %></td>
+                <td><%= value[1] %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% elsif type == "set" %>
+          <% for value in values %>
+            <%= value %><br />
+          <% end %>
         <% end %>
       </div>
       </td>

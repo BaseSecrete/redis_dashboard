@@ -1,18 +1,25 @@
 <div class="table">
   <table>
     <thead>
+      <th>Type</th>
       <th>Key</th>
       <th>Value</th>
-      <th>Type</th>
       <th></th>
     </thead>
 
     <% for key in keys %>
       <tr>
+        <td><%= key[:type] %></td>
         <td><%= key[:key] %></td>
         <td><%= key[:value] %></td>
-        <td><%= key[:type] %></td>
-        <td><a href="/key/<%= key[:key] %>?id=#{redis_id}">View</a></td>
+        <td>
+          <% if %w(set hash zset).include?(key[:type]) %>
+            <a href="/keys/<%= key[:key] %>?id=<%= redis_id %>">View</a>
+            <% if key[:value].to_i > 1000 %>
+              (Warning: Potentially costly)
+            <% end %>           
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

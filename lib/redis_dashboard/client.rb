@@ -53,7 +53,7 @@ class RedisDashboard::Client
              when "set"
                connection.smembers(key)
              when "zset"
-               "#{connection.zcount(key, "-inf", "+inf")}"
+               connection.zrange(key, 0, -1, with_scores: true)
              end
     {key: key, values: values, type: key_type}
   end
