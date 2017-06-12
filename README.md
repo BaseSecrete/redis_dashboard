@@ -1,9 +1,22 @@
 # Redis Dashboard
 
-It's a Sinatra web app showing monitoring informations about your Redis server.
+A Sinatra web app showing monitoring informations about your Redis servers.
 You can run it in standalone or inside your Rails app.
 
 ![Redis dashboard](https://github.com/BaseSecrete/redis_dashboard/blob/master/screenshot.jpg)
+
+## Features
+
+#### List of your redis servers
+  - Connections
+  - Memory
+  - Commands per second
+
+#### Detailed views for each server
+  - Redis INFO output
+  - Redis CONFIG GET output
+  - Redis CLIENT LIST output
+  - Redis SLOWLOG GET output
 
 ## Installation inside a Rails app
 
