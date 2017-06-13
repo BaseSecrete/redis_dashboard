@@ -3,7 +3,7 @@ require "redis"
 require "uri"
 
 class RedisDashboard::Application < Sinatra::Base
-  after { client.close }
+  after { close_clients }
 
   get "/" do
     erb(:index, locals: {clients: clients})
@@ -30,11 +30,18 @@ class RedisDashboard::Application < Sinatra::Base
   end
 
   def client
-    @client ||= RedisDashboard::Client.new(RedisDashboard.urls[redis_id])
+    @client ||= RedisDashboard::Client.new(RedisDashboard.urls[redis_id.to_i])
   end
 
   def clients
-    RedisDashboard.urls.map { |url| RedisDashboard::Client.new(url) }
+    @clients ||= RedisDashboard.urls.map do |url|
+      RedisDashboard::Client.new(url)
+    end
+  end
+
+  def close_clients
+    @client.close if @client
+    @clients.each { |client| client.close } if @clients
   end
 
   helpers do
@@ -47,7 +54,7 @@ class RedisDashboard::Application < Sinatra::Base
     end
 
     def redis_id
-      params[:id].to_i
+      params[:id]
     end
 
     def active_page?(path='')
