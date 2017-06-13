@@ -43,6 +43,41 @@ class RedisDashboard::Client
     end.sort{ |left, right| right.microseconds <=> left.microseconds }
   end
 
+  def key(key) 
+    key_type = connection.type(key)
+    values = case key_type
+             when "string"
+               [connection.get(key)]
+             when "hash"
+               connection.hgetall(key)
+             when "set"
+               connection.smembers(key)
+             when "zset"
+               connection.zrange(key, 0, -1, with_scores: true)
+             end
+    {key: key, values: values, type: key_type}
+  end
+
+  def keys(params = {})
+    cursor = params.fetch("cursor", 0)
+    next_cursor, keys = connection.scan(cursor)
+    keys = keys.map do |key| 
+      key_type = connection.type(key)
+      value = case key_type
+              when "string"
+                connection.get(key)
+              when "hash"
+                connection.hlen(key)
+              when "set"
+                "#{connection.scard(key)}"
+              when "zset"
+                "#{connection.zcount(key, "-inf", "+inf")}"
+              end
+      {key: key, value: value, type: key_type}
+    end
+    {next_cursor: next_cursor, keys: keys}
+  end
+
   private
 
   def connection

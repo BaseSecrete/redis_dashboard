@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Redis Dashboard</title>
-    <link rel="stylesheet" href="application.css">
+    <link rel="stylesheet" href="/application.css">
   </head>
 
   <body>
@@ -20,6 +20,7 @@
             <a class="page-menu-item <%= 'active' if active_page?('config') %>" href="<%= url("/config?id=#{redis_id}") %>">Config</a>
             <a class="page-menu-item <%= 'active' if active_page?('clients') %>" href="<%= url("/clients?id=#{redis_id}") %>">Clients</a>
             <a class="page-menu-item <%= 'active' if active_page?('slowlog') %>" href="<%= url("/slowlog?id=#{redis_id}") %>">Slowlog</a>
+            <a class="page-menu-item <%= 'active' if active_page?('keys') %>" href="<%= url("/keys?id=#{redis_id}") %>">Keys</a>            
           </div>
         <% end %>
       </div>
