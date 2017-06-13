@@ -8,6 +8,9 @@ class RedisDashboard::Application < Sinatra::Base
   get "/" do
     erb(:index, locals: {clients: clients})
   end
+  after "/" do
+    clients.each { |client| client.close }
+  end
 
   get "/info" do
     erb(:info, locals: {info: client.info})
@@ -34,7 +37,9 @@ class RedisDashboard::Application < Sinatra::Base
   end
 
   def clients
-    RedisDashboard.urls.map { |url| RedisDashboard::Client.new(url) }
+    @clients ||= RedisDashboard.urls.map do |url|
+      RedisDashboard::Client.new(url)
+    end
   end
 
   helpers do
