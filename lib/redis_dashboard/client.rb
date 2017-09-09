@@ -43,6 +43,37 @@ class RedisDashboard::Client
     end.sort{ |left, right| right.microseconds <=> left.microseconds }
   end
 
+  def biggest_keys
+    connection.eval(<<-LUA)
+      local function compareSizes(left, right)
+        return left[2] > right[2]
+      end
+
+      local function biggest_keys(limit)
+        local cursor = "0"
+        local entries = {}
+        local min_size = 0
+        repeat
+          local ret = redis.call("scan", cursor)
+          for _, key in ipairs(ret[2]) do
+            local size = string.len(redis.call("DUMP", key))
+            if size > min_size then
+              table.insert(entries, {key, size})
+              table.sort(entries, compareSizes)
+              if #entries > limit then
+                table.remove(entries)
+              end
+            end
+          end
+          cursor = ret[1]
+        until cursor == "0"
+        return entries
+      end
+
+      return biggest_keys(100)
+    LUA
+  end
+
   private
 
   def connection

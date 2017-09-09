@@ -25,6 +25,10 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:slowlog, locals: {commands: client.slow_commands})
   end
 
+  get "/biggest_keys" do
+    erb(:biggest_keys, locals: {biggest_keys: client.biggest_keys})
+  end
+
   get "/application.css" do
     scss(:application, style: :expanded)
   end
