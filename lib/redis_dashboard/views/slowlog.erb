@@ -10,7 +10,7 @@
     <% for cmd in commands %>
       <tr>
         <td><%= cmd.id %></td>
-        <td><%= epoch_to_short_date_time cmd.timestamp %></td>
+        <td class="date"><%= epoch_to_short_date_time cmd.timestamp %></td>
         <td><%= cmd.microseconds %></td>
         <td><%= cmd.command.join(" ") %></td>
       </tr>
