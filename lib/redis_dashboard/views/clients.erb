@@ -2,13 +2,17 @@
   <table>
     <thead>
       <% for key in (keys = clients.first.keys) %>
-        <th><%= key %></th>
+        <th title="<%= clients_column_description key %>"><%= key %></th>
       <% end %>
     </thead>
     <% for client in clients %>
       <tr>
         <% for key in keys %>
-          <td><%= client[key] %></td>
+          <% if key == "events" %>
+            <td title="<%= client_event_description client[key] %>"><%= client[key] %></td>
+          <% else %>
+            <td><%= client[key] %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
