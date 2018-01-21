@@ -18,6 +18,10 @@
           <span class="label">Commands per second</span>
           <span><%= info["instantaneous_ops_per_sec"] %></span>
         </div>
+        <div>
+          <span class="label">Cache hit ratio</span>
+          <span><%= format_impact_percentage info["keyspace_hits"].to_f * 100 / (info["keyspace_hits"].to_i + info["keyspace_misses"].to_i) %></span>
+        </div>
       </div>
     </div>
   <% end %>
