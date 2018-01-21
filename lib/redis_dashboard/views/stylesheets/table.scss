@@ -21,7 +21,7 @@ th {
   padding: 12px 12px 11px;
   text-align: left;
   line-height: 24px;
-  }
+}
 
 th {
   font-weight: 400;
@@ -29,6 +29,7 @@ th {
   font-size: .694rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 td.key {
@@ -41,4 +42,8 @@ td.key {
 
 td.date {
   white-space: nowrap;
+}
+
+td.number {
+  text-align: right;
 }

@@ -28,8 +28,8 @@ class RedisDashboard::Client
     connection.info
   end
 
-  def close
-    connection.close if connection
+  def stats
+    connection.info("commandstats")
   end
 
   def slow_commands(length = 128) # 128 is the default slowlog-max-len
@@ -41,6 +41,10 @@ class RedisDashboard::Client
       cmd.command = entry[3]
       cmd
     end.sort{ |left, right| right.microseconds <=> left.microseconds }
+  end
+
+  def close
+    connection.close if connection
   end
 
   private

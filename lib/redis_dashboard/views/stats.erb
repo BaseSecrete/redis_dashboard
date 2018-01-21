@@ -1,0 +1,18 @@
+<div class="table">
+  <table>
+    <tr>
+      <th>Command</th>
+      <th>Calls</th>
+      <th>Total ㎲</th>
+      <th>㎲ / call</th>
+    </tr>
+    <% for (key,hash) in stats %>
+      <tr>
+        <td class="key"><%= key %></td>
+        <td class="number"><%= hash["calls"] %></td>
+        <td class="number"><%= hash["usec"] %></td>
+        <td class="number"><%= hash["usec_per_call"] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

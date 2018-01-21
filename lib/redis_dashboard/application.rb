@@ -21,6 +21,10 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:clients, locals: {clients: client.clients})
   end
 
+  get "/stats" do
+    erb(:stats, locals: {stats: client.stats})
+  end
+
   get "/slowlog" do
     erb(:slowlog, locals: {commands: client.slow_commands})
   end
