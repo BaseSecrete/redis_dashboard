@@ -65,6 +65,10 @@ class RedisDashboard::Application < Sinatra::Base
       request.path_info == '/' + path
     end
 
+    def format_impact_percentage(percentage)
+      percentage < 1 ? "< 1 %" : "#{percentage.round} %"
+    end
+
     def clients_column_description(col)
       # https://redis.io/commands/client-list
       {

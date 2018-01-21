@@ -29,7 +29,10 @@ class RedisDashboard::Client
   end
 
   def stats
-    connection.info("commandstats").sort { |a, b| b.last["usec"].to_i <=> a.last["usec"].to_i }
+    stats = connection.info("commandstats").sort { |a, b| b.last["usec"].to_i <=> a.last["usec"].to_i }
+    total = stats.reduce(0) { |total, stat| total += stat.last["usec"].to_i }
+    stats.each { |stat| stat.last["impact"] = stat.last["usec"].to_f * 100 / total }
+    stats
   end
 
   def slow_commands(length = 128) # 128 is the default slowlog-max-len

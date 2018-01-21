@@ -5,6 +5,7 @@
       <th>Total ㎲</th>
       <th>Calls</th>
       <th>㎲ / call</th>
+      <th>Impact</th>
     </tr>
     <% for (key,hash) in stats %>
       <tr>
@@ -12,6 +13,7 @@
         <td class="number"><%= hash["usec"] %></td>
         <td class="number"><%= hash["calls"] %></td>
         <td class="number"><%= hash["usec_per_call"] %></td>
+        <td class="number"><%= format_impact_percentage hash["impact"] %></td>
       </tr>
     <% end %>
   </table>
