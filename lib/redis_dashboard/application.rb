@@ -66,7 +66,19 @@ class RedisDashboard::Application < Sinatra::Base
     end
 
     def format_impact_percentage(percentage)
-      percentage < 1 ? "< 1 %" : "#{percentage.round} %"
+      percentage < 1 ? "< 1 <small>%</small>" : "#{percentage.round} <small>%</small>"
+    end
+
+    def format_usec(usec)
+      "#{usec}&nbsp;<small>㎲</small>"
+    end
+
+    def compute_cache_hit_ratio(info)
+      if (total = info["keyspace_hits"].to_i + info["keyspace_misses"].to_i) > 0
+        info["keyspace_hits"].to_f * 100
+      else
+        0
+      end
     end
 
     def clients_column_description(col)

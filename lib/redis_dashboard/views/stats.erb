@@ -2,17 +2,17 @@
   <table>
     <tr>
       <th>Command</th>
-      <th>Total ㎲</th>
+      <th>Total time</th>
       <th>Calls</th>
-      <th>㎲ / call</th>
+      <th>AVG time</th>
       <th>Impact</th>
     </tr>
     <% for (key,hash) in stats %>
       <tr>
         <td class="key"><%= key %></td>
-        <td class="number"><%= hash["usec"] %></td>
+        <td class="number"><%= format_usec hash["usec"] %></td>
         <td class="number"><%= hash["calls"] %></td>
-        <td class="number"><%= hash["usec_per_call"] %></td>
+        <td class="number"><%= format_usec hash["usec_per_call"] %></td>
         <td class="number"><%= format_impact_percentage hash["impact"] %></td>
       </tr>
     <% end %>

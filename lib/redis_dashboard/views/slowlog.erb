@@ -11,7 +11,7 @@
       <tr>
         <td><%= cmd.id %></td>
         <td class="date"><%= epoch_to_short_date_time cmd.timestamp %></td>
-        <td><%= cmd.microseconds %></td>
+        <td class="number"><%= format_usec cmd.microseconds %></td>
         <td><%= cmd.command.join(" ") %></td>
       </tr>
     <% end %>

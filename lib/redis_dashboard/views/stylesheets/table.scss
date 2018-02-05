@@ -19,7 +19,6 @@ td,
 th {
   border-bottom: 1px solid $color-light;
   padding: 12px 12px 11px;
-  text-align: left;
   line-height: 24px;
 }
 
@@ -42,6 +41,7 @@ td.key {
 
 td.date {
   white-space: nowrap;
+  text-align: right;
 }
 
 td.number {
