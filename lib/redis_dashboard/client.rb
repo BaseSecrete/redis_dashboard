@@ -35,8 +35,8 @@ class RedisDashboard::Client
     stats
   end
 
-  def slow_commands(length = 128) # 128 is the default slowlog-max-len
-    connection.slowlog("get", length).map do |entry|
+  def slow_commands
+    connection.slowlog("get", config["slowlog-max-len"]).map do |entry|
       cmd = RedisDashboard::Command.new
       cmd.id = entry[0]
       cmd.timestamp = entry[1]

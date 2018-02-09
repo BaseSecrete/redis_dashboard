@@ -26,7 +26,7 @@ class RedisDashboard::Application < Sinatra::Base
   end
 
   get "/slowlog" do
-    erb(:slowlog, locals: {commands: client.slow_commands})
+    erb(:slowlog, locals: {client: client, commands: client.slow_commands})
   end
 
   get "/application.css" do
