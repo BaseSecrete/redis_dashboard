@@ -6,13 +6,7 @@ class RedisDashboard::Client
   end
 
   def clients
-    connection.client.call([:client, "list"]).split("\n").map do |line|
-      line.split(" ").reduce({}) do |hash, str|
-        pair = str.split("=")
-        hash[pair[0]] = pair[1]
-        hash
-      end
-    end
+    connection.client("list")
   end
 
   def config
