@@ -1,5 +1,9 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "sinatra"
-gem "redis"
-gem "sass"
+gem 'redis'
+gem 'sass'
+gem 'sinatra'
+
+group :development do
+  gem 'rubocop', require: false
+end

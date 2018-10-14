@@ -6,12 +6,12 @@ class RedisDashboard::Client
   end
 
   def clients
-    connection.client("list")
+    connection.client('list')
   end
 
   def config
     hash = {}
-    array = connection.config("get", "*")
+    array = connection.config('get', '*')
     while (pair = array.slice!(0, 2)).any?
       hash[pair.first] = pair.last
     end
@@ -23,21 +23,21 @@ class RedisDashboard::Client
   end
 
   def stats
-    stats = connection.info("commandstats").sort { |a, b| b.last["usec"].to_i <=> a.last["usec"].to_i }
-    total = stats.reduce(0) { |total, stat| total += stat.last["usec"].to_i }
-    stats.each { |stat| stat.last["impact"] = stat.last["usec"].to_f * 100 / total }
+    stats = connection.info('commandstats').sort { |a, b| b.last['usec'].to_i <=> a.last['usec'].to_i }
+    total = stats.reduce(0) { |tot, stat| tot + stat.last['usec'].to_i }
+    stats.each { |stat| stat.last['impact'] = stat.last['usec'].to_f * 100 / total }
     stats
   end
 
   def slow_commands
-    connection.slowlog("get", config["slowlog-max-len"]).map do |entry|
+    connection.slowlog('get', config['slowlog-max-len']).map do |entry|
       cmd = RedisDashboard::Command.new
       cmd.id = entry[0]
       cmd.timestamp = entry[1]
       cmd.microseconds = entry[2]
       cmd.command = entry[3]
       cmd
-    end.sort{ |left, right| right.microseconds <=> left.microseconds }
+    end.sort { |left, right| right.microseconds <=> left.microseconds }
   end
 
   def close

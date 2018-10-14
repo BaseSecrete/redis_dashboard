@@ -4,10 +4,10 @@ module RedisDashboard
   end
 
   def self.urls
-    @urls ||= ["redis://localhost"]
+    @urls ||= ['redis://localhost']
   end
 end
 
-require "redis_dashboard/client"
-require "redis_dashboard/command"
-require "redis_dashboard/application"
+require 'redis_dashboard/client'
+require 'redis_dashboard/command'
+require 'redis_dashboard/application'
