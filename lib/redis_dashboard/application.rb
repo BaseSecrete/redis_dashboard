@@ -74,8 +74,10 @@ class RedisDashboard::Application < Sinatra::Base
     end
 
     def compute_cache_hit_ratio(info)
-      if (total = info["keyspace_hits"].to_i + info["keyspace_misses"].to_i) > 0
-        info["keyspace_hits"].to_f * 100
+      hits = info["keyspace_hits"].to_i
+      misses = info["keyspace_misses"].to_i
+      if (total = hits + misses) > 0
+        hits * 100.0 / total
       else
         0
       end
