@@ -88,7 +88,7 @@ class RedisDashboard::Application < Sinatra::Base
 
     def clients_column_description(col)
       # https://redis.io/commands/client-list
-      {
+      @clients_column_description ||= {
         id: "an unique 64-bit client ID (introduced in Redis 2.8.12).",
         addr: "address/port of the client",
         fd: "file descriptor corresponding to the socket",
@@ -106,12 +106,13 @@ class RedisDashboard::Application < Sinatra::Base
         omem: "output buffer memory usage",
         events: "file descriptor events (see below)",
         cmd: "last command played",
-      }[col.to_sym]
+      }
+      @clients_column_description[col.to_sym]
     end
 
     def client_event_description(event)
       # https://redis.io/commands/client-list
-      {
+      @client_event_description ||= {
         O: "the client is a slave in MONITOR mode",
         S: "the client is a normal slave server",
         M: "the client is a master",
@@ -125,7 +126,8 @@ class RedisDashboard::Application < Sinatra::Base
         r: "the client is in readonly mode against a cluster node",
         A: "connection to be closed ASAP",
         N: "no specific flag set",
-      }[event.to_sym]
+      }
+      @client_event_description[event.to_sym]
     end
   end
 end
