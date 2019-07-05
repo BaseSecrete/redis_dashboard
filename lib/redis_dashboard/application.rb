@@ -3,6 +3,9 @@ require "redis"
 require "uri"
 
 class RedisDashboard::Application < Sinatra::Base
+  require "erubis"
+  set :erb, escape_html: true
+
   after { close_clients }
 
   get "/" do
