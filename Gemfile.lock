@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    erubi (1.8.0)
     ffi (1.11.1)
     mustermann (1.0.3)
     rack (2.0.7)
@@ -26,6 +27,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  erubi
   redis
   sass
   sinatra
