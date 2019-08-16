@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "redis_dashboard"
-  spec.version       = "0.1.5"
+  spec.version       = "0.1.6"
   spec.authors       = ["Alexis Bernard"]
   spec.email         = ["alexis@bernard.io"]
   spec.summary       = "Sinatra app to monitor Redis servers."
