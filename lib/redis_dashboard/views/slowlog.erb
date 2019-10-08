@@ -1,5 +1,5 @@
 <p>
-  List up to <%= client.config["slowlog-max-len"] %> commands slower than <%== format_usec client.config["slowlog-log-slower-than"] %>.
+  List up to <%= client.config["slowlog-max-len"] %> commands slower than <%= format_usec client.config["slowlog-log-slower-than"] %>.
   It is defined in your config by <em>slowlog-max-len</em> and <em>slowlog-log-slower-than</em>.
 </p>
 
@@ -16,7 +16,7 @@
       <tr>
         <td><%= cmd.id %></td>
         <td class="date"><%= epoch_to_short_date_time cmd.timestamp %></td>
-        <td class="number"><%== format_usec cmd.microseconds %></td>
+        <td class="number"><%= format_usec cmd.microseconds %></td>
         <td><%= cmd.command.join(" ") %></td>
       </tr>
     <% end %>
