@@ -10,12 +10,7 @@ class RedisDashboard::Client
   end
 
   def config
-    hash = {}
-    array = connection.config("get", "*")
-    while (pair = array.slice!(0, 2)).any?
-      hash[pair.first] = pair.last
-    end
-    hash
+    array_reply_to_hash(connection.config("get", "*"))
   end
 
   def info
@@ -40,6 +35,10 @@ class RedisDashboard::Client
     end.sort{ |left, right| right.microseconds <=> left.microseconds }
   end
 
+  def memory_stats
+    array_reply_to_hash(connection.memory("stats"))
+  end
+
   def close
     connection.close if connection
   end
@@ -48,5 +47,14 @@ class RedisDashboard::Client
 
   def connection
     @connection ||= Redis.new(url: url)
+  end
+
+  # Array reply is a Redis format which is translated into a hash for convenience.
+  def array_reply_to_hash(array)
+    hash = {}
+    while (pair = array.slice!(0, 2)).any?
+      hash[pair.first] = pair.last.is_a?(Array) ? array_reply_to_hash(pair.last) : pair.last
+    end
+    hash
   end
 end

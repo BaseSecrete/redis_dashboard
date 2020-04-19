@@ -32,6 +32,10 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:slowlog, locals: {client: client, commands: client.slow_commands})
   end
 
+  get "/memory" do
+    erb(:memory, locals: {client: client, stats: client.memory_stats})
+  end
+
   get "/application.css" do
     scss(:application, style: :expanded)
   end

@@ -21,6 +21,7 @@
             <a class="page-menu-item <%= 'active' if active_page?('clients') %>" href="<%= url("/clients?id=#{redis_id}") %>">Clients</a>
             <a class="page-menu-item <%= 'active' if active_page?('stats') %>" href="<%= url("/stats?id=#{redis_id}") %>">Stats</a>
             <a class="page-menu-item <%= 'active' if active_page?('slowlog') %>" href="<%= url("/slowlog?id=#{redis_id}") %>">Slowlog</a>
+            <a class="page-menu-item <%= 'active' if active_page?('memory') %>" href="<%= url("/memory?id=#{redis_id}") %>">Memory</a>
           </div>
         <% end %>
       </div>
