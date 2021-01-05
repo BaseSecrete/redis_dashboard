@@ -1,11 +1,11 @@
-<div class="server-list">
+<div class="grid-auto">
   <% clients.each_with_index do |client, index| %>
     <% info = client.info %>
-    <div class="server-card">
-      <div class="server-card-title">
+    <div class="card">
+      <header>
         <a href="<%= url("info?id=#{index}") %>"><%= URI(client.url).host %>  (<%= info["role"] %>)</a>
-      </div>
-      <div class="server-card-content">
+      </header>
+      <div class="grid-auto">
         <div>
           <span class="label">Connections</span>
           <span><%= info["connected_clients"] %></span>

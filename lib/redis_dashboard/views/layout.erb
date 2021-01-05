@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Redis Dashboard</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="application.css">
   </head>
 
   <body>
-    <div class="page">
-      <div class="page-header">
-        <h2 class="page-title">
-          <a href="<%= url("/") %>" class="<%= 'active' if active_page?('') %>">Redis Dashboard</a>
-          <% if params[:id] %>
-            <span><%= page_title %></span>
-          <% end %>
-        </h2>
+    <header>
+      <h1 class="page-title">
+        <a href="<%= url("/") %>">Redis Dashboard</a>
         <% if params[:id] %>
-          <div class="page-menu">
-            <a class="page-menu-item <%= 'active' if active_page?('info') %>" href="<%= url("/info?id=#{redis_id}") %>">Info</a>
-            <a class="page-menu-item <%= 'active' if active_page?('config') %>" href="<%= url("/config?id=#{redis_id}") %>">Config</a>
-            <a class="page-menu-item <%= 'active' if active_page?('clients') %>" href="<%= url("/clients?id=#{redis_id}") %>">Clients</a>
-            <a class="page-menu-item <%= 'active' if active_page?('slowlog') %>" href="<%= url("/slowlog?id=#{redis_id}") %>">Slowlog</a>
-          </div>
+          <span><%= page_title %></span>
         <% end %>
-      </div>
+      </h1>
+      <% if params[:id] %>
+        <nav aria-label="site">
+          <a class="page-menu-item <%= 'active' if active_page?('info') %>" href="<%= url("/info?id=#{redis_id}") %>">Info</a>
+          <a class="page-menu-item <%= 'active' if active_page?('config') %>" href="<%= url("/config?id=#{redis_id}") %>">Config</a>
+          <a class="page-menu-item <%= 'active' if active_page?('clients') %>" href="<%= url("/clients?id=#{redis_id}") %>">Clients</a>
+          <a class="page-menu-item <%= 'active' if active_page?('slowlog') %>" href="<%= url("/slowlog?id=#{redis_id}") %>">Slowlog</a>
+        </nav>
+      <% end %>
+    </header>
+    <main>
       <%= yield %>
-      <div class="page-footer">
-        Made by <a href="https://basesecrete.com/en/">Base Secrète</a>.  MIT License. <a href="https://github.com/BaseSecrete/redis_dashboard">Fork on GitHub</a>.
-        <div class="rorvswild">
-          Rails developer? Check out <a href="https://rorvswild.com">RoRvsWild</a>, our Ruby on Rails application monitoring tool.
-        </div>
-      </div>
-    </div>
+    </main>
+    <footer>
+        <b>Rails developer?</b> Check out <a href="https://rorvswild.com" target="_blank" rel="noopener">RoRvsWild</a>, our Ruby on Rails application monitoring tool.<br>
+        Made by <a href="https://www.basesecrete.com/" target="_blank" rel="noopener">Base Secrète</a>.  MIT License. <a href="https://github.com/BaseSecrete/redis_dashboard" target="_blank" rel="noopener nofollower">Fork on GitHub</a>.
+    </footer>
   </body>
 </html>
