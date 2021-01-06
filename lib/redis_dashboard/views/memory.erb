@@ -1,0 +1,25 @@
+<div class="table">
+  <table>
+    <tbody>
+      <% for (key,value) in stats %>
+        <tr>
+          <td class="key"><%= key %></td>
+          <td>
+            <% if value.is_a?(Hash) %>
+              <% for (sub_key, sub_value) in value %>
+                <%= "#{sub_key}: #{sub_value}" %><br/>
+              <% end %>
+            <% else %>
+              <%= value %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div role="alert">
+  <a href="https://github.com/antirez/redis/blob/unstable/redis.conf" target="_blank" rel="noopener nofollower">
+    Redis memory stats documentation
+  </a>
+</div>

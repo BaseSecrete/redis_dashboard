@@ -8,15 +8,19 @@
       <div class="grid-auto">
         <div>
           <span class="label">Connections</span>
-          <span><%= info["connected_clients"] %></span>
+          <strong><%= info["connected_clients"] %></strong>
         </div>
         <div>
           <span class="label">Memory</span>
-          <span><%= info["used_memory_human"] %></span>
+          <strong><%= info["used_memory_human"] %></strong>
         </div>
         <div>
           <span class="label">Commands per second</span>
-          <span><%= info["instantaneous_ops_per_sec"] %></span>
+          <strong><%= info["instantaneous_ops_per_sec"] %></strong>
+        </div>
+        <div>
+          <span class="label">Cache hit ratio</span>
+          <strong><%== format_impact_percentage compute_cache_hit_ratio(info) %></strong>
         </div>
       </div>
     </div>

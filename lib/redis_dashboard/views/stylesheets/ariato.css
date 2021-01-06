@@ -2216,6 +2216,7 @@ dd + dt {
 table {
   width: 100%;
   padding: 0;
+  border-spacing: 0;
 }
 
 thead {
@@ -2237,7 +2238,7 @@ th {
   font-size: calc(var(--base-font-size) / var(--ratio) / var(--ratio));
   letter-spacing: 0.03em;
   transform: translateY(2px);
-  padding: 6px 24px 10px;
+  padding: 12px 24px 12px;
   text-align: left;
   color: rgba(var(--color-grey-500), 1);
 }
@@ -2355,7 +2356,7 @@ td.is-right {
   background: rgba(var(--color-grey-50), 1);
   border-left: var(--space-1-2) solid  rgba(var(--color-grey-400), 1);
   border-radius: var(--border-radius-s, 0);
-  box-shadow: var(--box-shadow-l);
+  box-shadow: var(--box-shadow-m);
   padding: calc(var(--space) * 1.5 ) var(--space-3x);
 }
 

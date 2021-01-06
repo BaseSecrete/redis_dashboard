@@ -2,15 +2,26 @@
   <table>
     <thead>
       <% for key in (keys = clients.first.keys) %>
-        <th><%= key %></th>
+        <th title="<%= clients_column_description key %>"><%= key %></th>
       <% end %>
     </thead>
-    <% for client in clients %>
-      <tr>
-        <% for key in keys %>
-          <td><%= client[key] %></td>
-        <% end %>
-      </tr>
-    <% end %>
+    <tbody>
+      <% for client in clients %>
+        <tr>
+          <% for key in keys %>
+            <% if key == "events" %>
+              <td title="<%= client_event_description client[key] %>"><%= client[key] %></td>
+            <% else %>
+              <td><%= client[key] %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
+</div>
+<div role="alert">
+  <a href="https://redis.io/commands/client-list" target="_blank" rel="noopener nofollower">
+    Redis client list documentation
+  </a>
 </div>

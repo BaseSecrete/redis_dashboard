@@ -1,19 +1,31 @@
 <div class="card">
+  <p>
+    List up to <%= client.config["slowlog-max-len"] %> commands slower than <%== format_usec client.config["slowlog-log-slower-than"] %>.
+    It is defined in your config by <em>slowlog-max-len</em> and <em>slowlog-log-slower-than</em>.
+  </p>
   <table>
     <thead>
-      <th>ID</th>
-      <th>At</th>
-      <th>Duration</th>
-      <th>Command</th>
-    </thead>
-
-    <% for cmd in commands %>
       <tr>
-        <td><%= cmd.id %></td>
-        <td><%= epoch_to_short_date_time cmd.timestamp %></td>
-        <td><%= cmd.microseconds %></td>
-        <td><%= cmd.command.join(" ") %></td>
+        <th>Command</th>
+        <th class="is-right">ID</th>
+        <th class="is-right">At</th>
+        <th class="is-right">Duration</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% for cmd in commands %>
+        <tr>
+          <td><%= cmd.command.join(" ") %></td>
+          <td class="is-right"><%= cmd.id %></td>
+          <td class="is-right"><%= epoch_to_short_date_time cmd.timestamp %></td>
+          <td class="is-right"><%== format_usec cmd.microseconds %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
+</div>
+<div role="alert">
+  <a href="https://redis.io/commands/slowlog" target="_blank" rel="noopener nofollower">
+    Redis slowlog documentation
+  </a>
 </div>
