@@ -20,27 +20,19 @@ You can run it in standalone or inside your Rails app.
 
 ## Installation inside a Rails app
 
-Add this line in your Gemfile:
-```ruby
-gem "redis_dashboard"
-```
-
-In your terminal run the following command:
-```shell
-bundle install
-```
+Add to your Gemfile `gem "redis_dashboard"` and run `bundle install`.
 
 Then mount the app from `config/routes.rb`:
 ```ruby
-mount RedisDashboard::Application, at: "redis_dashboard"
+mount RedisDashboard::Application, at: "redis"
 ```
 
-Specify the Redis URLs in `config/redis_dashboard.rb`:
+By default Redis dashboard tries to connect to `REDIS_URL` environment variable or to `localhost`. You can specify any other URL by adding an initializer in `config/initializers/redis_dashboard.rb` :
 ```ruby
-RedisDashboard.urls = ["redis://localhost"]
+RedisDashboard.urls = [ENV["REDIS_URL"] || "redis://localhost"]
 ```
 
-Finally visit http://localhost/redis_dashboard/.
+Finally visit http://localhost:3000/redis.
 
 ## Authentication
 

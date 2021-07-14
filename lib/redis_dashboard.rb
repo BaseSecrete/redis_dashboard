@@ -4,7 +4,7 @@ module RedisDashboard
   end
 
   def self.urls
-    @urls ||= ["redis://localhost"]
+    @urls ||= [ENV["REDIS_URL"] ||"redis://localhost"]
   end
 end
 
