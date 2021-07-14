@@ -34,13 +34,23 @@ RedisDashboard.urls = [ENV["REDIS_URL"] || "redis://localhost"]
 
 Finally visit http://localhost:3000/redis.
 
-## Authentication
+## Authentication and permissions
 
-To protect your dashboard you can setup a basic HTTP authentication:
+To protect your dashboard you can setup a basic HTTP authentication :
 
 ```ruby
+# config/initializers/redis_dashboard.rb
 RedisDashboard::Application.use(Rack::Auth::Basic) do |user, password|
   user == "USER" && password == "PASSWORD"
+end
+```
+
+In case you handle authentication with Devise, you can perform the permission verification directly from the routes :
+
+```ruby
+# config/routes.rb
+authenticate :user, -> (u) { u.admin? } do # Supposing there is a User#admin? method
+  mount RedisDashboard::Application, at: "redis"
 end
 ```
 
