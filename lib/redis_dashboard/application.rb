@@ -12,27 +12,23 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:index, locals: {clients: clients})
   end
 
-  get "/info" do
-    erb(:info, locals: {info: client.info})
-  end
-
-  get "/config" do
+  get "/:server/config" do
     erb(:config, locals: {config: client.config})
   end
 
-  get "/clients" do
+  get "/:server/clients" do
     erb(:clients, locals: {clients: client.clients})
   end
 
-  get "/stats" do
+  get "/:server/stats" do
     erb(:stats, locals: {stats: client.stats})
   end
 
-  get "/slowlog" do
+  get "/:server/slowlog" do
     erb(:slowlog, locals: {client: client, commands: client.slow_commands})
   end
 
-  get "/memory" do
+  get "/:server/memory" do
     erb(:memory, locals: {client: client, stats: client.memory_stats})
   end
 
@@ -40,8 +36,17 @@ class RedisDashboard::Application < Sinatra::Base
     scss(:application, style: :expanded)
   end
 
+  get "/:server" do
+    erb(:info, locals: {info: client.info})
+  end
+
   def client
-    @client ||= RedisDashboard::Client.new(RedisDashboard.urls[redis_id.to_i])
+    return @client if @client
+    if url = RedisDashboard.urls.find { |url| URI(url).host == params[:server] }
+      @client ||= RedisDashboard::Client.new(url)
+    else
+      raise Sinatra::NotFound
+    end
   end
 
   def clients
@@ -62,10 +67,6 @@ class RedisDashboard::Application < Sinatra::Base
 
     def epoch_to_short_date_time(epoch)
       Time.at(epoch).strftime("%b %d %H:%M")
-    end
-
-    def redis_id
-      params[:id]
     end
 
     def active_page?(path='')

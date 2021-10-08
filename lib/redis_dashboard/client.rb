@@ -43,6 +43,10 @@ class RedisDashboard::Client
     connection.close if connection
   end
 
+  def host
+    URI(url).host
+  end
+
   private
 
   def connection
