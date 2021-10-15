@@ -1,0 +1,27 @@
+<div class="card">
+  <table>
+    <tbody>
+      <tr>
+        <form action="<%= url("/#{params[:server]}/keyspace/#{params[:db]}") %>" method="get">
+          <input type="text" name="query" value="<%= "#{params[:query]}" %>" placeholder="Filter key names with patterns such as foo*"/>
+        </form>
+      <tr>
+      <tr>
+        <td>
+          <% if !params[:query].to_s.empty? %>
+            <% if keys.size == 1 %>
+              <%= keys.size %> key found
+            <% else %>
+              <%= keys.size %> keys found
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% for key in keys %>
+        <tr>
+          <td class="key"><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{ERB::Util.url_encode(key)}") %>"><%= key %></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

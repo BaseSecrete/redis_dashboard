@@ -12,12 +12,13 @@
       </h1>
       <% if params[:server] %>
         <nav aria-label="site">
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}") %>" href="<%= url("/#{params[:server]}") %>">Info</a>
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}/config") %>" href="<%= url("/#{params[:server]}/config") %>">Config</a>
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}/clients") %>" href="<%= url("/#{params[:server]}/clients") %>">Clients</a>
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}/stats") %>" href="<%= url("/#{params[:server]}/stats") %>">Stats</a>
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}/slowlog") %>" href="<%= url("/#{params[:server]}/slowlog") %>">Slowlog</a>
-          <a class="page-menu-item <%= 'active' if active_page?("#{params[:server]}/memory") %>" href="<%= url("/#{params[:server]}/memory") %>">Memory</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}") %>" href="<%= url("/#{params[:server]}") %>">Info</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}/config") %>" href="<%= url("/#{params[:server]}/config") %>">Config</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}/clients") %>" href="<%= url("/#{params[:server]}/clients") %>">Clients</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}/stats") %>" href="<%= url("/#{params[:server]}/stats") %>">Stats</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}/slowlog") %>" href="<%= url("/#{params[:server]}/slowlog") %>">Slowlog</a>
+          <a class="page-menu-item <%= active_page_css("/#{params[:server]}/memory") %>" href="<%= url("/#{params[:server]}/memory") %>">Memory</a>
+          <a class="page-menu-item <%= active_path_css("/#{params[:server]}/keyspace") %>" href="<%= url("/#{params[:server]}/keyspace") %>">Keyspace</a>
         </nav>
       <% end %>  
     </header>

@@ -12,6 +12,10 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:index, locals: {clients: clients})
   end
 
+  get "/application.css" do
+    scss(:application, style: :expanded)
+  end
+
   get "/:server/config" do
     erb(:config, locals: {config: client.config})
   end
@@ -32,8 +36,24 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:memory, locals: {client: client, stats: client.memory_stats})
   end
 
-  get "/application.css" do
-    scss(:application, style: :expanded)
+  get "/:server/keyspace" do
+    erb(:keyspace, locals: {keyspace: client.keyspace})
+  end
+
+  get "/:server/keyspace/:db" do
+    client.connection.select(params[:db].sub(/^db/, ""))
+    erb(:keys, locals: {client: client, keys: client.keys(params[:query])})
+  end
+
+  get "/:server/keyspace/:db/*" do
+    params[:key] = params[:splat].first
+    raise params[:key].inspect
+    client.connection.select(params[:db].sub(/^db/, ""))
+    erb(:key, locals: {client: client})
+  end
+
+  get "/:server/keyspace/:db/*" do
+    raise params.inspect
   end
 
   get "/:server" do
@@ -69,8 +89,12 @@ class RedisDashboard::Application < Sinatra::Base
       Time.at(epoch).strftime("%b %d %H:%M")
     end
 
-    def active_page?(path='')
-      request.path_info == '/' + path
+    def active_page_css(path)
+      request.path_info == path && "active"
+    end
+
+    def active_path_css(path)
+      request.path_info.start_with?(path) && "active"
     end
 
     def format_impact_percentage(percentage)
@@ -89,6 +113,13 @@ class RedisDashboard::Application < Sinatra::Base
       else
         0
       end
+    end
+
+    def render_key_data(key)
+      type = client.connection.type(params[:key])
+      erb(:"key/#{type}", locals: {key: key})
+    rescue Errno::ENOENT
+      erb(:"key/unsupported", locals: {key: key})
     end
 
     def clients_column_description(col)

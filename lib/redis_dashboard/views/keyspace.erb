@@ -1,0 +1,18 @@
+<div class="card">
+  <table>
+    <% for (db,stats) in keyspace %>
+      <tr>
+        <td class="key">
+          <a href="<%= url(File.join(params[:server], "keyspace", db)) %>"><%= db %></a>
+        </td>
+        <td>
+          <ul>
+            <% for (name, value) in stats %>
+              <li><%= name %> <%= value %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

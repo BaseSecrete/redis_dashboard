@@ -1,0 +1,12 @@
+<h3>Data</h3>
+
+<table>
+  <tbody>
+    <% for (name, value) in client.connection.hgetall(key) %>
+      <tr>
+        <td><%= name %></td>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

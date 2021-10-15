@@ -1,0 +1,11 @@
+<h3>Data</h3>
+
+<table>
+  <tbody>
+    <% for value in client.connection.lrange(key, 0, -1) %>
+      <tr>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
