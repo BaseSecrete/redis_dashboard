@@ -47,13 +47,8 @@ class RedisDashboard::Application < Sinatra::Base
 
   get "/:server/keyspace/:db/*" do
     params[:key] = params[:splat].first
-    raise params[:key].inspect
     client.connection.select(params[:db].sub(/^db/, ""))
     erb(:key, locals: {client: client})
-  end
-
-  get "/:server/keyspace/:db/*" do
-    raise params.inspect
   end
 
   get "/:server" do
