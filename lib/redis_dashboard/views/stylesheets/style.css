@@ -107,9 +107,10 @@ td.key {
 /* card */
 
 .card {
-	overflow-x: scroll;
+	overflow-x: auto;
 	border-radius: 0;
 	box-shadow: var(--box-shadow-m);
+	padding: var(--space-3x);
 }
 
 .card p {
@@ -121,12 +122,18 @@ td.key {
 }
 
 .card table {
-	margin: -24px;
+	margin: -24px; 
 	min-width: calc(100% + 48px);
+	outline-style: none;
 }
 
 .card * + table {
 	margin: 0 -24px -24px;
+}
+
+table li {
+	margin-top: 0;
+	list-style-type: none;
 }
 
 .card div .label {
