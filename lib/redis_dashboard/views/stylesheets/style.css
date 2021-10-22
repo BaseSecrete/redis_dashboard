@@ -3,16 +3,6 @@ body {
   margin: 0px auto;
 }
 
-/* links */
-a:any-link {
-	color: rgba(var(--color-red-500), 1);
-}
-
-a:any-link:focus,
-a:any-link:hover {
-	color: rgba(var(--color-red-600), 1);
-}
-
 /* header */
 
 body > header { 
@@ -109,7 +99,6 @@ td.key {
 .card {
 	overflow-x: auto;
 	border-radius: 0;
-	box-shadow: var(--box-shadow-m);
 	padding: var(--space-3x);
 }
 
