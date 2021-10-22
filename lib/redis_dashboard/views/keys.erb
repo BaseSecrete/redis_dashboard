@@ -22,7 +22,7 @@
       </tr>
       <% for key in keys[0..1000] %>
         <tr>
-          <td><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{escape_key(key)}") %>"><%= key %></a></td>
+          <td class="wrap"><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{escape_key(key)}") %>"><%= key %></a></td>
         </tr>
       <% end %>
     </tbody>
