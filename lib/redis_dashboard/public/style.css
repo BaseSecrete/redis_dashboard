@@ -71,6 +71,13 @@ main * + * {
 
 /* table */
 
+table,
+th,
+tr {
+	width: 100%;
+}
+
+
 tbody tr:nth-child(even) {
 	background: inherit;
 }
@@ -84,6 +91,12 @@ td {
 	font-family: var(--font-mono);
 }
 
+td small {
+	font-size: var(--font-size-40);
+	color: rgba(var(--color-grey-400), 1);
+}
+
+
 th,
 td.key {
 	text-transform: uppercase;
@@ -92,6 +105,11 @@ td.key {
 	font-size: var(--font-size-40);
 	letter-spacing: 0.05em;
 	color: rgba(var(--color-grey-500), 1);
+}
+
+td.wrap {
+	word-break: break-all;
+	white-space: normal;
 }
 
 /* card */

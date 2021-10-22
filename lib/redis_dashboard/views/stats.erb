@@ -12,7 +12,7 @@
     <tbody>
       <% for (key,hash) in stats %>
         <tr>
-          <td><%= key %></td>
+          <td class="wrap"><%= key %></td>
           <td class="is-right"><%= hash["calls"] %></td>
           <td class="is-right"><%== format_usec hash["usec_per_call"] %></td>
           <td class="is-right"><%== format_usec hash["usec"] %></td>
