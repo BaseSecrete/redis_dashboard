@@ -239,12 +239,12 @@ is-flow > * + * {
 /* elements */
 /* text selection */
 ::-moz-selection {
-  background: rgba(var(--color-blue-100), 1);
+  background: rgba(var(--color-red-100), 1);
   text-shadow: none;
 }
 
 ::selection {
-  background: rgba(var(--color-blue-100), 1);
+  background: rgba(var(--color-red-100), 1);
   text-shadow: none;
 }
 
@@ -377,9 +377,9 @@ select:focus,
 textarea:focus,
 output:focus {
   outline: 0 none;
-  border-color: rgba(var(--color-blue-400), 1);
+  border-color: rgba(var(--color-red-400), 1);
   box-shadow: 
-    0 0 0 2px rgba(var(--color-blue-200), 1),
+    0 0 0 2px rgba(var(--color-red-200), 1),
     var(--box-shadow-s);
 }
 
@@ -418,7 +418,7 @@ select:-internal-autofill-selected,
 textarea:-internal-autofill-selected,
 output:-internal-autofill-selected {
   font-size: var(--base-font-size);
-  background-color: rgba(var(--color-green-100), 1) !important;
+  background-color: rgba(var(--color-red-100), 1) !important;
 }
 
 label + input,
@@ -439,11 +439,11 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border-color:rgba(var(--color-blue-200), 1);
+  border-color:rgba(var(--color-red-200), 1);
   font-size: var(--base-font-size);
-  -webkit-text-fill-color:rgba(var(--color-blue-700), 1);
-  -webkit-box-shadow: 0 0 0px 1000px rgba(var(--color-blue-100), 1) inset;
-  box-shadow: 0 0 0px 1000px rgba(var(--color-blue-100), 1) inset;
+  -webkit-text-fill-color:rgba(var(--color-red-700), 1);
+  -webkit-box-shadow: 0 0 0px 1000px rgba(var(--color-red-100), 1) inset;
+  box-shadow: 0 0 0px 1000px rgba(var(--color-red-100), 1) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -662,27 +662,6 @@ td.is-right {
   min-width: 12px;
   margin: 2px;
   vertical-align: middle;
-}
-
-/* style modifiers */  
-.badge.is-info {
-  background: rgba(var(--color-blue-50), 1);
-  color: rgba(var(--color-blue-700), 1);
-}
-
-.badge.is-success {
-  background: rgba(var(--color-green-50), 1);
-  color: rgba(var(--color-green-700), 1);
-}
-
-.badge.is-error {
-  background: rgba(var(--color-red-50), 1);
-  color: rgba(var(--color-red-700), 1);
-}
-
-.badge.is-warning {
-  background: rgba(var(--color-yellow-50), 1);
-  color: rgba(var(--color-yellow-700), 1);
 }
 
 .card {
