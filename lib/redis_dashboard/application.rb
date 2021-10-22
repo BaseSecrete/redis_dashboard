@@ -12,10 +12,6 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:index, locals: {clients: clients})
   end
 
-  get "/application.css" do
-    scss(:application, style: :expanded)
-  end
-
   get "/:server/config" do
     erb(:config, locals: {config: client.config})
   end
