@@ -15,11 +15,14 @@
               <%= keys.size %> keys found
             <% end %>
           <% end %>
+          <% if keys.size > 1000 %>
+            <small>(only 1000 are listed)</small>
+          <% end %>
         </td>
       </tr>
-      <% for key in keys %>
+      <% for key in keys[0..1000] %>
         <tr>
-          <td class="key"><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{ERB::Util.url_encode(key)}") %>"><%= key %></a></td>
+          <td class="key"><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{escape_key(key)}") %>"><%= key %></a></td>
         </tr>
       <% end %>
     </tbody>

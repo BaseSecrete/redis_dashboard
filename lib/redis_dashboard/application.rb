@@ -119,6 +119,10 @@ class RedisDashboard::Application < Sinatra::Base
     rescue Redis::CommandError
     end
 
+    def escape_key(key)
+      key.gsub("#", "%23")
+    end
+
     def clients_column_description(col)
       # https://redis.io/commands/client-list
       @clients_column_description ||= {
