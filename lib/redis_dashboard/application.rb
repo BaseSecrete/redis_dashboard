@@ -29,7 +29,8 @@ class RedisDashboard::Application < Sinatra::Base
   end
 
   get "/:server/memory" do
-    erb(:memory, locals: {client: client, stats: client.memory_stats})
+    stats = mute_redis_command_error { client.memory_stats } || {}
+    erb(:memory, locals: {client: client, stats: stats })
   end
 
   get "/:server/keyspace" do
@@ -111,6 +112,11 @@ class RedisDashboard::Application < Sinatra::Base
       erb(:"key/#{type}", locals: {key: key})
     rescue Errno::ENOENT
       erb(:"key/unsupported", locals: {key: key})
+    end
+
+    def mute_redis_command_error(&block)
+      block.call
+    rescue Redis::CommandError
     end
 
     def clients_column_description(col)

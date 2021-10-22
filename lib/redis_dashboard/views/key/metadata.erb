@@ -14,7 +14,7 @@
 
     <tr>
       <td>Bytes</td>
-      <td><%= client.connection.memory(:usage, key) %></td>
+      <td><%= mute_redis_command_error { client.connection.memory(:usage, key) } %></td>
     </tr>
 
     <tr>
