@@ -102,6 +102,20 @@ td.key {
   color: rgba(var(--color-grey-500), 1);
 }
 
+td.key {
+  width: 30%;
+  word-break: break-all;
+  white-space: normal;
+}
+
+td.key.no-transform {
+  text-transform: none;
+}
+
+td.date {
+  white-space: nowrap;
+}
+
 td.wrap {
   word-break: break-all;
   white-space: normal;

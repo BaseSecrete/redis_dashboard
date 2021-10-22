@@ -17,7 +17,7 @@
         <tr>
           <td class="wrap"><%= cmd.command.join(" ") %></td>
           <td class="is-right"><%= cmd.id %></td>
-          <td class="is-right"><%= epoch_to_short_date_time cmd.timestamp %></td>
+          <td class="is-right date"><%= epoch_to_short_date_time cmd.timestamp %></td>
           <td class="is-right"><%== format_usec cmd.microseconds %></td>
         </tr>
       <% end %>

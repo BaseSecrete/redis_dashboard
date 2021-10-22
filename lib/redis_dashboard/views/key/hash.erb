@@ -4,7 +4,7 @@
   <tbody>
     <% for (name, value) in client.connection.hgetall(key) %>
       <tr>
-        <td class="key"><%= name %></td>
+        <td class="key no-transform"><%= name %></td>
         <td class="wrap"><%= value %></td>
       </tr>
     <% end %>
