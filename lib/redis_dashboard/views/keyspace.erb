@@ -1,17 +1,31 @@
 <div class="card">
   <table>
-    <% for (db,stats) in keyspace %>
+    <!-- TODO Alexis refactor -->
+    <thead>
       <tr>
-        <td class="key">
+        <th>db</th>
+        <th class="is-right">keys</th>
+        <th class="is-right">expires</th>
+        <th class="is-right">avg_ttl</th>
+      </tr>
+    </thead>
+    
+    <% for (db, stats) in keyspace %>
+      <tr>
+        <td>
           <a href="<%= url(File.join(params[:server], "keyspace", db)) %>"><%= db %></a>
         </td>
-        <td>
-          <ul>
-            <% for (name, value) in stats %>
-              <li><%= name %> <%= value %></li>
-            <% end %>
-          </ul>
-        </td>
+        <% for (name, value) in stats %>
+          <% if name == "keys" %>
+            <td class="is-right"><%= value %></td>
+          <% end %>
+          <% if name == "expires" %>
+            <td class="is-right"><%= value %></td>
+          <% end %>
+          <% if name == "avg_ttl" %>
+            <td class="is-right"><%= value %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </table>
