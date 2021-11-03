@@ -16,6 +16,9 @@
         <a href="<%= url("/") %>">Redis Dashboard</a>
       </h1>
       <% if params[:server] %>
+        <span class="server"><%= page_title %></span>
+      <% end %>
+      <% if params[:server] %>
         <nav aria-label="site">
           <a class="page-menu-item <%= active_page_css("/#{params[:server]}") %>" href="<%= url("/#{params[:server]}") %>">Info</a>
           <a class="page-menu-item <%= active_page_css("/#{params[:server]}/config") %>" href="<%= url("/#{params[:server]}/config") %>">Config</a>

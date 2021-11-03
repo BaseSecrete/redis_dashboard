@@ -10,7 +10,7 @@ body > header {
 
 .logo {
   display: flex;
-  margin: 0 auto 24px 0;
+  margin: 0 0 24px 0;
   padding: 0;
   box-shadow: var(--box-shadow-m);
   line-height: 48px;
@@ -28,6 +28,17 @@ body > header {
   box-shadow: var(--box-shadow-m);
 }
 
+body > header .server {
+  font-weight: 400;
+  display: block;
+  font-size: 1rem;
+  line-height: 48px;
+  padding: 0 24px;
+  margin: 0 0 24px 0;
+  background: rgba(var(--color-grey-00), 1);
+  box-shadow: var(--box-shadow-m);
+}
+
 .logo a:hover {
   background: rgba(var(--color-red-600), 1);
   color: rgba(var(--color-grey-00), 1);
@@ -37,7 +48,7 @@ body > header nav {
   display: flex;
   flex-wrap: wrap;
   line-height: 48px;
-  margin-bottom: 24px;
+  margin: 0 0 24px auto;
   background-color: rgba(var(--color-grey-00), 1);
   box-shadow: var(--box-shadow-m);
 }
