@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Redis Dashboard</title>
+    <title>
+      <% if params[:server] %>
+        <%= page_title %> | 
+      <% end %>
+      Redis Dashboard</title>
     <link rel="stylesheet" href="<%= url("ariato.css") %>">
     <link rel="stylesheet" href="<%= url("style.css") %>">
   </head>
