@@ -1,6 +1,5 @@
 <div class="card">
   <table>
-    <!-- TODO Alexis refactor -->
     <thead>
       <tr>
         <th>db</th>
@@ -15,17 +14,9 @@
         <td>
           <a href="<%= url(File.join(params[:server], "keyspace", db)) %>"><%= db %></a>
         </td>
-        <% for (name, value) in stats %>
-          <% if name == "keys" %>
-            <td class="is-right"><%= value %></td>
-          <% end %>
-          <% if name == "expires" %>
-            <td class="is-right"><%= value %></td>
-          <% end %>
-          <% if name == "avg_ttl" %>
-            <td class="is-right"><%= value %></td>
-          <% end %>
-        <% end %>
+        <td class="is-right"><%= stats["keys"] %></td>
+        <td class="is-right"><%= stats["expires"] %></td>
+        <td class="is-right"><%= stats["avg_ttl"] %></td>
       </tr>
     <% end %>
   </table>
