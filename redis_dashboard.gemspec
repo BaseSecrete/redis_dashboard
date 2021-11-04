@@ -19,5 +19,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sinatra"
   spec.add_runtime_dependency "erubi"
   spec.add_runtime_dependency "redis"
-  spec.add_runtime_dependency "sassc"
 end
