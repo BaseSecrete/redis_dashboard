@@ -1,0 +1,26 @@
+<div class="card">
+  <form action="<%= url("/#{params[:server]}/keyspace/#{params[:db]}") %>" method="get">
+    <input type="text" name="query" value="<%= "#{params[:query]}" %>" placeholder="Filter key names with patterns such as foo*"/>
+  </form>
+  <% if !params[:query].to_s.empty? %>
+    <p>
+      <% if keys.size == 1 %>
+        <%= keys.size %> key found
+      <% else %>
+        <%= keys.size %> keys found
+      <% end %>
+      <% if keys.size > 1000 %>
+        <small>(only 1000 are listed)</small>
+      <% end %>
+    </p>
+    <table>
+      <tbody>
+        <% for key in keys[0..1000] %>
+          <tr>
+            <td class="wrap"><a href="<%= url("/#{params[:server]}/keyspace/#{params[:db]}/#{escape_key(key)}") %>"><%= key %></a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

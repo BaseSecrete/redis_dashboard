@@ -1,0 +1,11 @@
+<h3>Data</h3>
+
+<table>
+  <tbody>
+    <% for value in client.connection.smembers(key) %>
+      <tr>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

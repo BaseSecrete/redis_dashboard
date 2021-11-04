@@ -1,26 +1,26 @@
-<div class="server-list">
+<div class="grid-auto">
   <% clients.each_with_index do |client, index| %>
     <% info = client.info %>
-    <div class="server-card">
-      <div class="server-card-title">
-        <a href="<%= url("info?id=#{index}") %>"><%= URI(client.url).host %>  (<%= info["role"] %>)</a>
-      </div>
-      <div class="server-card-content">
+    <div class="card">
+      <header>
+        <a href="<%= url("/#{client.host}") %>"><%= client.host %>  (<%= info["role"] %>)</a>
+      </header>
+      <div class="grid-auto">
         <div>
           <span class="label">Connections</span>
-          <span><%= info["connected_clients"] %></span>
+          <strong><%= info["connected_clients"] %></strong>
         </div>
         <div>
           <span class="label">Memory</span>
-          <span><%= info["used_memory_human"] %></span>
+          <strong><%= info["used_memory_human"] %></strong>
         </div>
         <div>
           <span class="label">Commands per second</span>
-          <span><%= info["instantaneous_ops_per_sec"] %></span>
+          <strong><%= info["instantaneous_ops_per_sec"] %></strong>
         </div>
         <div>
           <span class="label">Cache hit ratio</span>
-          <span><%== format_impact_percentage compute_cache_hit_ratio(info) %></span>
+          <strong><%== format_impact_percentage compute_cache_hit_ratio(info) %></strong>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ class RedisDashboard::Client
 
   def initialize(url)
     @url = url
+    @connection ||= Redis.new(url: url)
   end
 
   def clients
@@ -39,15 +40,31 @@ class RedisDashboard::Client
     array_reply_to_hash(connection.memory("stats"))
   end
 
+  def keys(pattern)
+    connection.keys(pattern)
+  end
+
   def close
     connection.close if connection
   end
 
-  private
-
-  def connection
-    @connection ||= Redis.new(url: url)
+  def host
+    URI(url).host
   end
+
+  def keyspace
+    connection.info("KEYSPACE").inject({}) do |hash, space|
+      db, str = space
+      hash[db] = str.split(",").inject({}) do |h, s|
+        k, v = s.split("=")
+        h[k] = v
+        h
+      end
+      hash
+    end
+  end
+
+  private
 
   # Array reply is a Redis format which is translated into a hash for convenience.
   def array_reply_to_hash(array)

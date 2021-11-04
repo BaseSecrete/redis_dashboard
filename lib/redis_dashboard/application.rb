@@ -12,36 +12,53 @@ class RedisDashboard::Application < Sinatra::Base
     erb(:index, locals: {clients: clients})
   end
 
-  get "/info" do
-    erb(:info, locals: {info: client.info})
-  end
-
-  get "/config" do
+  get "/:server/config" do
     erb(:config, locals: {config: client.config})
   end
 
-  get "/clients" do
+  get "/:server/clients" do
     erb(:clients, locals: {clients: client.clients})
   end
 
-  get "/stats" do
+  get "/:server/stats" do
     erb(:stats, locals: {stats: client.stats})
   end
 
-  get "/slowlog" do
+  get "/:server/slowlog" do
     erb(:slowlog, locals: {client: client, commands: client.slow_commands})
   end
 
-  get "/memory" do
-    erb(:memory, locals: {client: client, stats: client.memory_stats})
+  get "/:server/memory" do
+    stats = mute_redis_command_error { client.memory_stats } || {}
+    erb(:memory, locals: {client: client, stats: stats })
   end
 
-  get "/application.css" do
-    scss(:application, style: :expanded)
+  get "/:server/keyspace" do
+    erb(:keyspace, locals: {keyspace: client.keyspace})
+  end
+
+  get "/:server/keyspace/:db" do
+    client.connection.select(params[:db].sub(/^db/, ""))
+    erb(:keys, locals: {client: client, keys: client.keys(params[:query])})
+  end
+
+  get "/:server/keyspace/:db/*" do
+    params[:key] = params[:splat].first
+    client.connection.select(params[:db].sub(/^db/, ""))
+    erb(:key, locals: {client: client})
+  end
+
+  get "/:server" do
+    erb(:info, locals: {info: client.info})
   end
 
   def client
-    @client ||= RedisDashboard::Client.new(RedisDashboard.urls[redis_id.to_i])
+    return @client if @client
+    if url = RedisDashboard.urls.find { |url| URI(url).host == params[:server] }
+      @client ||= RedisDashboard::Client.new(url)
+    else
+      raise Sinatra::NotFound
+    end
   end
 
   def clients
@@ -64,12 +81,12 @@ class RedisDashboard::Application < Sinatra::Base
       Time.at(epoch).strftime("%b %d %H:%M")
     end
 
-    def redis_id
-      params[:id]
+    def active_page_css(path)
+      request.path_info == path && "active"
     end
 
-    def active_page?(path='')
-      request.path_info == '/' + path
+    def active_path_css(path)
+      request.path_info.start_with?(path) && "active"
     end
 
     def format_impact_percentage(percentage)
@@ -88,6 +105,22 @@ class RedisDashboard::Application < Sinatra::Base
       else
         0
       end
+    end
+
+    def render_key_data(key)
+      type = client.connection.type(params[:key])
+      erb(:"key/#{type}", locals: {key: key})
+    rescue Errno::ENOENT
+      erb(:"key/unsupported", locals: {key: key})
+    end
+
+    def mute_redis_command_error(&block)
+      block.call
+    rescue Redis::CommandError
+    end
+
+    def escape_key(key)
+      key.gsub("#", "%23")
     end
 
     def clients_column_description(col)

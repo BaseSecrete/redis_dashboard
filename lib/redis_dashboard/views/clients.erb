@@ -1,26 +1,27 @@
-<div class="table">
+<div class="card">
   <table>
     <thead>
       <% for key in (keys = clients.first.keys) %>
         <th title="<%= clients_column_description key %>"><%= key %></th>
       <% end %>
     </thead>
-    <% for client in clients %>
-      <tr>
-        <% for key in keys %>
-          <% if key == "events" %>
-            <td title="<%= client_event_description client[key] %>"><%= client[key] %></td>
-          <% else %>
-            <td><%= client[key] %></td>
+    <tbody>
+      <% for client in clients %>
+        <tr>
+          <% for key in keys %>
+            <% if key == "events" %>
+              <td title="<%= client_event_description client[key] %>"><%= client[key] %></td>
+            <% else %>
+              <td><%= client[key] %></td>
+            <% end %>
           <% end %>
-        <% end %>
-      </tr>
-    <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
-
-<a href="https://redis.io/commands/client-list">
-  <svg viewBox="0 0 24 24">
-    <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-  </svg> Redis client list documentation
-</a>
+<div role="alert">
+  <a href="https://redis.io/commands/client-list" target="_blank" rel="noopener nofollower">
+    Redis client list documentation
+  </a>
+</div>

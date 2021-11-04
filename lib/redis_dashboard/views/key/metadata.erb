@@ -1,0 +1,47 @@
+<h3>Metadata</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td class="key">Key</td>
+      <td class="wrap"><%= key %></td>
+    </tr>
+
+    <tr>
+      <td class="key">Type</td>
+      <td class="wrap"><%= key_type = client.connection.type(key) %></td>
+    </tr>
+
+    <tr>
+      <td class="key">Bytes</td>
+      <td class="wrap"><%= mute_redis_command_error { client.connection.memory(:usage, key) } %></td>
+    </tr>
+
+    <tr>
+      <td class="key">TTL</td>
+      <td class="wrap"><%= client.connection.ttl(key) %></td>
+    </tr>
+
+    <tr>
+      <td class="key">Object refcount</td>
+      <td class="wrap"><%= client.connection.object("REFCOUNT", key) %></td>
+    </tr>
+
+    <tr>
+      <td class="key">Object encoding</td>
+      <td class="wrap"><%= client.connection.object("ENCODING", key) %></td>
+    </tr>
+
+    <tr>
+      <td class="key">Object idletime</td>
+      <td class="wrap"><%= client.connection.object("IDLETIME", key) %></td>
+    </tr>
+
+    <% if key_type == "list" %>
+      <tr>
+        <td class="key">Length</td>
+        <td class="wrap"><%= client.connection.llen(key) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+<h3>Data</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Score</td>
+      <td>Value</td>
+    </tr>
+    <% client.connection.call([:zrange, key, 0, -1, "WITHSCORES"]).each_slice(2) do |value, score| %>
+      <tr>
+        <td><%= score %></td>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

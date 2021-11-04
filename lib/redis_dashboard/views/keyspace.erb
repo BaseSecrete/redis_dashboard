@@ -1,0 +1,23 @@
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>db</th>
+        <th class="is-right">keys</th>
+        <th class="is-right">expires</th>
+        <th class="is-right">avg_ttl</th>
+      </tr>
+    </thead>
+    
+    <% for (db, stats) in keyspace %>
+      <tr>
+        <td>
+          <a href="<%= url(File.join(params[:server], "keyspace", db)) %>"><%= db %></a>
+        </td>
+        <td class="is-right"><%= stats["keys"] %></td>
+        <td class="is-right"><%= stats["expires"] %></td>
+        <td class="is-right"><%= stats["avg_ttl"] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

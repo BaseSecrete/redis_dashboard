@@ -1,20 +1,24 @@
-<div class="table">
+<div class="card">
   <table>
-    <tr>
-      <th>Command</th>
-      <th>Total time</th>
-      <th>Calls</th>
-      <th>AVG time</th>
-      <th>Impact</th>
-    </tr>
-    <% for (key,hash) in stats %>
+    <thead>
       <tr>
-        <td class="key"><%= key %></td>
-        <td class="number"><%== format_usec hash["usec"] %></td>
-        <td class="number"><%= hash["calls"] %></td>
-        <td class="number"><%== format_usec hash["usec_per_call"] %></td>
-        <td class="number"><%== format_impact_percentage hash["impact"] %></td>
+        <th>Command</th>
+        <th class="is-right">Calls</th>
+        <th class="is-right">AVG time</th>
+        <th class="is-right">Total time</th>
+        <th class="is-right">Impact</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% for (key,hash) in stats %>
+        <tr>
+          <td class="wrap"><%= key %></td>
+          <td class="is-right"><%= hash["calls"] %></td>
+          <td class="is-right"><%== format_usec hash["usec_per_call"] %></td>
+          <td class="is-right"><%== format_usec hash["usec"] %></td>
+          <td class="is-right"><%== format_impact_percentage hash["impact"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
