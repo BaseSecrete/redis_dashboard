@@ -1,3 +1,5 @@
+## 0.3.0
+
 * Add keyspace explorer
 * Use friendly URLs with server host name
 * Mute Redis error when server is too old to support memory command
