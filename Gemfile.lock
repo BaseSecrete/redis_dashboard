@@ -1,20 +1,24 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    erubi (1.10.0)
-    mustermann (1.1.1)
+    connection_pool (2.3.0)
+    erubi (1.12.0)
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.3)
-    rack-protection (2.1.0)
+    rack (2.2.6.2)
+    rack-protection (3.0.5)
       rack
-    redis (4.5.1)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.12.1)
+      connection_pool
     ruby2_keywords (0.0.5)
-    sinatra (2.1.0)
-      mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
+    sinatra (3.0.5)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.5)
       tilt (~> 2.0)
-    tilt (2.0.10)
+    tilt (2.0.11)
 
 PLATFORMS
   ruby
@@ -25,4 +29,4 @@ DEPENDENCIES
   sinatra
 
 BUNDLED WITH
-   2.1.4
+   2.2.22
