@@ -39,7 +39,7 @@ class RedisDashboard::Application < Sinatra::Base
 
   get "/:server/keyspace/:db" do
     client.connection.select(params[:db].sub(/^db/, ""))
-    erb(:keys, locals: {client: client, keys: client.keys(params[:query])})
+    erb(:keys, locals: {client: client, keys: client.keys(params[:query] || "")})
   end
 
   get "/:server/keyspace/:db/*" do

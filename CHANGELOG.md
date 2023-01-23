@@ -1,3 +1,7 @@
+## [Unreleased]
+
+* Fix key filtering when there is no query
+
 ## 0.3.0
 
 * Add keyspace explorer
