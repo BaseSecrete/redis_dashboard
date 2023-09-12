@@ -1,6 +1,6 @@
 # Changelog of Redis Dashboard
 
-## Unreleased
+## 0.3.1 (2023-09-12)
 
 * Fix key filtering when there is no query
 
